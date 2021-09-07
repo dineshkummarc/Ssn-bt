@@ -1,8 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:ssnbt/screens/home.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:ssnbt/services/AuthenticationService.dart';
+
+import 'screens/OnBoarding.dart';
 
 class Wrapper extends StatefulWidget {
   @override
@@ -11,13 +13,37 @@ class Wrapper extends StatefulWidget {
 
 class _WrapperState extends State<Wrapper> {
   final _authInstance = AuthenticationService();
+  bool firstTime = true;
+  Future getPrefs() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    firstTime = prefs.getBool("firstTime") ?? true;
+  }
+
   Future signInWithGoogle() async {
     dynamic result = await _authInstance.signInWithGoogle();
     if (result == null) {
-      ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text("Please log in with ssn mail id")));
-      signInWithGoogle();
+      showDialog(
+          context: context,
+          barrierDismissible: false,
+          builder: (_) => AlertDialog(
+                title: Text("Invalid Login"),
+                content: Text("Please Log in with ssn mail id"),
+                actions: [
+                  TextButton(
+                      child: Text('Ok'),
+                      onPressed: () {
+                        Navigator.pop(context);
+                        signInWithGoogle();
+                      }),
+                ],
+              ));
     }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getPrefs();
   }
 
   @override
@@ -29,7 +55,10 @@ class _WrapperState extends State<Wrapper> {
         backgroundColor: Color(0xFF5274EF),
       );
     } else {
-      return Home();
+      if (firstTime) {
+        return OnBoarding();
+      } else {}
+      return OnBoarding();
     }
   }
 }
