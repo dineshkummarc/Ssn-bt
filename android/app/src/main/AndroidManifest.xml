@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.ssn.ssnbt">
+    package="com.ssn.ssn_bt">
    <application
         android:label="ssnbt"
         android:icon="@mipmap/ic_launcher">

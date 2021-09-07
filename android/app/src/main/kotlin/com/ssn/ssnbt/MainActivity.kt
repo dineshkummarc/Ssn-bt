@@ -1,4 +1,4 @@
-package com.ssn.ssnbt
+package com.ssn.ssn_bt
 
 import io.flutter.embedding.android.FlutterActivity
 
