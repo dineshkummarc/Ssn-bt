@@ -12,27 +12,15 @@ class OnBoarding extends StatefulWidget {
 
 class _OnBoardingState extends State<OnBoarding> {
   final _authInstance = AuthenticationService();
-  bool isHosteller = false;
-  Future getPrefs() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    isHosteller = prefs.getBool("isHosteller") ?? false;
-  }
-
+  bool _isHosteller = false;
   Future setPrefs() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setBool("isHosteller", isHosteller);
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    getPrefs();
+    prefs.setBool("isHosteller", _isHosteller);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF5274EF),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
@@ -61,31 +49,29 @@ class _OnBoardingState extends State<OnBoarding> {
                     Expanded(
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          primary: Colors.white,
+                          primary: (_isHosteller) ? Colors.white : Colors.blue,
                           shape: RoundedRectangleBorder(
-                              side: BorderSide(
-                                  width: 8,
-                                  color: (isHosteller)
-                                      ? Colors.white
-                                      : Colors.blue),
                               borderRadius: BorderRadius.circular(10)),
                           padding: EdgeInsets.symmetric(
                               vertical: 60, horizontal: 10),
                         ),
                         onPressed: () async {
-                          isHosteller = false;
+                          _isHosteller = false;
                           await setPrefs();
                           setState(() {});
                         },
                         child: Column(children: [
-                          Image.asset(
-                            'assets/dayScholar.png',
-                          ),
+                          Icon(Icons.directions_bus,
+                              color:
+                                  (_isHosteller) ? Colors.blue : Colors.white),
                           SizedBox(height: 5),
                           Text(
                             'Day-Scholar',
                             style: TextStyle(
-                                fontSize: 24, color: Color(0xFF5274EF)),
+                                fontSize: 24,
+                                color: (_isHosteller)
+                                    ? Colors.blue
+                                    : Colors.white),
                           )
                         ]),
                       ),
@@ -94,29 +80,32 @@ class _OnBoardingState extends State<OnBoarding> {
                     Expanded(
                         child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
-                              primary: Colors.white,
+                              primary:
+                                  (_isHosteller) ? Colors.blue : Colors.white,
                               padding: EdgeInsets.symmetric(
                                   vertical: 60, horizontal: 10),
                               shape: RoundedRectangleBorder(
-                                  side: BorderSide(
-                                      width: 8,
-                                      color: (isHosteller)
-                                          ? Colors.blue
-                                          : Colors.white),
                                   borderRadius: BorderRadius.circular(10)),
                             ),
                             onPressed: () async {
-                              isHosteller = true;
+                              _isHosteller = true;
                               await setPrefs();
                               setState(() {});
                             },
                             child: Column(children: [
-                              Image.asset('assets/hosteller.png'),
+                              Icon(
+                                Icons.apartment,
+                                color:
+                                    (_isHosteller) ? Colors.white : Colors.blue,
+                              ),
                               SizedBox(height: 5),
                               Text(
                                 'Hosteller',
                                 style: TextStyle(
-                                    fontSize: 24, color: Color(0xFF5274EF)),
+                                    fontSize: 24,
+                                    color: (_isHosteller)
+                                        ? Colors.white
+                                        : Colors.blue),
                               )
                             ])))
                   ],
@@ -126,7 +115,10 @@ class _OnBoardingState extends State<OnBoarding> {
                 alignment: Alignment.centerRight,
                 margin: EdgeInsets.only(right: 20),
                 child: ElevatedButton(
-                  onPressed: () {
+                  onPressed: () async {
+                    SharedPreferences _prefs =
+                        await SharedPreferences.getInstance();
+                    _prefs.setBool('firstTime', false);
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) => Home()));
                   },

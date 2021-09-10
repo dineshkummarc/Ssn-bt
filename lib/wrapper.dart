@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:ssnbt/services/AuthenticationService.dart';
-
 import 'screens/OnBoarding.dart';
+import 'screens/home.dart';
 
 class Wrapper extends StatefulWidget {
   @override
@@ -13,10 +13,10 @@ class Wrapper extends StatefulWidget {
 
 class _WrapperState extends State<Wrapper> {
   final _authInstance = AuthenticationService();
-  bool firstTime = true;
-  Future getPrefs() async {
+  Future<bool> getPrefs() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    firstTime = prefs.getBool("firstTime") ?? true;
+    bool firstTime = prefs.getBool("firstTime") ?? true;
+    return firstTime;
   }
 
   Future signInWithGoogle() async {
@@ -41,24 +41,26 @@ class _WrapperState extends State<Wrapper> {
   }
 
   @override
-  void initState() {
-    super.initState();
-    getPrefs();
-  }
-
-  @override
   Widget build(BuildContext context) {
     final user = Provider.of<User?>(context);
     if (user == null) {
       signInWithGoogle();
-      return Scaffold(
-        backgroundColor: Color(0xFF5274EF),
-      );
+      return Scaffold();
     } else {
-      if (firstTime) {
-        return OnBoarding();
-      } else {}
-      return OnBoarding();
+      return FutureBuilder<bool>(
+          future: getPrefs(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.done) {
+              if (snapshot.data == true) {
+                return OnBoarding();
+              } else {
+                return Home();
+              }
+            }
+            return CircularProgressIndicator(
+              color: Colors.white,
+            );
+          });
     }
   }
 }

@@ -1,7 +1,8 @@
-import 'dart:async';
-
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:ssnbt/screens/DetailsPage.dart';
+import 'package:ssnbt/screens/LostFound.dart';
+import 'package:ssnbt/screens/MapView.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -9,24 +10,28 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  Completer<GoogleMapController> _controller = Completer();
-
-  static const LatLng _center =
-      const LatLng(12.75194333944987, 80.20331063903828);
-  void _onMapCreated(GoogleMapController controller) {
-    _controller.complete(controller);
-  }
-
+  int _currentPage = 0;
+  List<Widget> _pages = [MapView(), DetailsPage(), LostFound()];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: GoogleMap(
-        onMapCreated: _onMapCreated,
-        initialCameraPosition: CameraPosition(
-          target: _center,
-          zoom: 15.0,
-        ),
-      ),
+      bottomNavigationBar: BottomNavigationBar(
+          showSelectedLabels: false,
+          showUnselectedLabels: false,
+          currentIndex: _currentPage,
+          onTap: (index) {
+            setState(() {
+              _currentPage = index;
+            });
+          },
+          items: [
+            BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.location_on_rounded), label: "Location"),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.business_center), label: "LostFound")
+          ]),
+      body: IndexedStack(index: _currentPage, children: _pages),
     );
   }
 }
