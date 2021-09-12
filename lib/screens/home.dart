@@ -1,4 +1,3 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:ssnbt/screens/DetailsPage.dart';
 import 'package:ssnbt/screens/LostFound.dart';
@@ -31,7 +30,8 @@ class _HomeState extends State<Home> {
             BottomNavigationBarItem(
                 icon: Icon(Icons.business_center), label: "LostFound")
           ]),
-      body: IndexedStack(index: _currentPage, children: _pages),
+      body: //IndexedStack(index: _currentPage, children: _pages),//old page state is saved
+          _pages[_currentPage],
     );
   }
 }

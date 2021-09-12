@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:ssnbt/services/AuthenticationService.dart';
+
 import 'screens/OnBoarding.dart';
 import 'screens/home.dart';
 
@@ -45,7 +46,11 @@ class _WrapperState extends State<Wrapper> {
     final user = Provider.of<User?>(context);
     if (user == null) {
       signInWithGoogle();
-      return Scaffold();
+      return Scaffold(
+        body: Center(
+          child: CircularProgressIndicator(color: Colors.white),
+        ),
+      );
     } else {
       return FutureBuilder<bool>(
           future: getPrefs(),
