@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ssnbt/services/FirestoreService.dart';
+import 'package:ssnbt/services/firestore_service.dart';
 
 class DeleteItemButton extends StatefulWidget {
   final String itemRequestId;

@@ -2,12 +2,13 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:ssnbt/services/AuthenticationService.dart';
-
-import 'screens/OnBoarding.dart';
+import 'package:ssnbt/services/authentication_service.dart';
 import 'screens/home.dart';
+import 'screens/on_boarding.dart';
 
 class Wrapper extends StatefulWidget {
+  const Wrapper({Key? key}) : super(key: key);
+
   @override
   _WrapperState createState() => _WrapperState();
 }
@@ -27,11 +28,11 @@ class _WrapperState extends State<Wrapper> {
           context: context,
           barrierDismissible: false,
           builder: (_) => AlertDialog(
-                title: Text("Invalid Login"),
-                content: Text("Please Log in with ssn mail id"),
+                title: const Text("Invalid Login"),
+                content: const Text("Please Log in with ssn mail id"),
                 actions: [
                   TextButton(
-                      child: Text('Ok'),
+                      child: const Text('Ok'),
                       onPressed: () {
                         Navigator.pop(context);
                         signInWithGoogle();
@@ -46,7 +47,7 @@ class _WrapperState extends State<Wrapper> {
     final user = Provider.of<User?>(context);
     if (user == null) {
       signInWithGoogle();
-      return Scaffold(
+      return const Scaffold(
         body: Center(
           child: CircularProgressIndicator(color: Colors.white),
         ),
@@ -57,12 +58,12 @@ class _WrapperState extends State<Wrapper> {
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.done) {
               if (snapshot.data == true) {
-                return OnBoarding();
+                return const OnBoarding();
               } else {
-                return Home();
+                return const Home();
               }
             }
-            return CircularProgressIndicator(
+            return const CircularProgressIndicator(
               color: Colors.white,
             );
           });

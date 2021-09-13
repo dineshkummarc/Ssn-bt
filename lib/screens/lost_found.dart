@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:ssnbt/screens/ReportLostItem.dart';
-import 'package:ssnbt/services/FirestoreService.dart';
-import 'package:ssnbt/widgets/LostItemCard.dart';
+import 'package:ssnbt/screens/report_lost_item.dart';
+import 'package:ssnbt/services/firestore_service.dart';
+import 'package:ssnbt/widgets/lost_item_card.dart';
 
 class LostFound extends StatelessWidget {
   const LostFound({Key? key}) : super(key: key);
@@ -12,28 +12,28 @@ class LostFound extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
         onPressed: () {
           Navigator.push(context,
-              MaterialPageRoute(builder: (context) => ReportLostItem()));
+              MaterialPageRoute(builder: (context) => const ReportLostItem()));
         },
       ),
       body: SafeArea(
-        minimum: EdgeInsets.fromLTRB(20, 50, 20, 0),
+        minimum: const EdgeInsets.fromLTRB(20, 50, 20, 0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
+            const Text(
               "Requests Raised",
               style: TextStyle(fontSize: 32),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Flexible(
               child: StreamBuilder<DocumentSnapshot?>(
                   stream: FirestoreService().userDataStream,
                   builder: (context, snapshot) {
                     if (snapshot.data?.exists == false) {
-                      return Center(
+                      return const Center(
                         child: Text(
                           'No Requests Raised',
                           style: TextStyle(color: Colors.grey),
@@ -46,7 +46,7 @@ class LostFound extends StatelessWidget {
                       List lostItemRequests =
                           snapshot.data?.get('lostItemRequests') ?? [];
                       if (lostItemRequests.isEmpty) {
-                        return Center(
+                        return const Center(
                           child: Text(
                             'No Requests Raised',
                             style: TextStyle(color: Colors.grey),
@@ -61,7 +61,7 @@ class LostFound extends StatelessWidget {
                         );
                       }
                     }
-                    return Center(child: CircularProgressIndicator());
+                    return const Center(child: CircularProgressIndicator());
                   }),
             ),
           ],

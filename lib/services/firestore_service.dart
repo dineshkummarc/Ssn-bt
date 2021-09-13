@@ -1,7 +1,9 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:ssnbt/models/LostItem.dart';
-import 'package:ssnbt/services/AuthenticationService.dart';
+import 'package:ssnbt/models/lost_item.dart';
+import 'package:ssnbt/services/authentication_service.dart';
 
 class FirestoreService {
   final FirebaseFirestore _instance = FirebaseFirestore.instance;
@@ -24,10 +26,10 @@ class FirestoreService {
       'image': null,
       'approved': null
     });
-    if (data.image != null) {
+    if (data.imagePath != null) {
       Reference ref = FirebaseStorage.instance
           .ref('lostItems/${_itemReference.id}/itemImage');
-      await ref.putFile(data.image!);
+      await ref.putFile(File(data.imagePath!));
       String url = await ref.getDownloadURL();
       await _itemReference.update({'image': url});
     }
@@ -49,8 +51,7 @@ class FirestoreService {
     final _firebaseStorage = FirebaseStorage.instance;
     Map<String, dynamic> itemData = await getItemDetails(itemRequestId);
     if (itemData['image'] != null) {
-      String imageUrl = itemData['image'];
-      await _firebaseStorage.refFromURL(imageUrl).delete();
+      await _firebaseStorage.refFromURL(itemData['image']).delete();
     }
     //delete user data
     DocumentSnapshot documentSnapshot =

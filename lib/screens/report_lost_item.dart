@@ -3,8 +3,8 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:ssnbt/constants.dart';
-import 'package:ssnbt/models/LostItem.dart';
-import 'package:ssnbt/services/FirestoreService.dart';
+import 'package:ssnbt/models/lost_item.dart';
+import 'package:ssnbt/services/firestore_service.dart';
 
 List<String> busRoutes = [
   '1',
@@ -71,7 +71,7 @@ class _ReportLostItemState extends State<ReportLostItem> {
     return Scaffold(
         resizeToAvoidBottomInset: false,
         body: SafeArea(
-          minimum: EdgeInsets.symmetric(horizontal: 20),
+          minimum: const EdgeInsets.symmetric(horizontal: 20),
           child: Form(
             key: _formKey,
             child: Column(
@@ -81,11 +81,11 @@ class _ReportLostItemState extends State<ReportLostItem> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
+                    const Text(
                       "Report Lost Item",
                       style: TextStyle(color: Colors.white, fontSize: 32),
                     ),
-                    SizedBox(height: 30),
+                    const SizedBox(height: 30),
                     Row(
                       children: [
                         Expanded(
@@ -103,7 +103,7 @@ class _ReportLostItemState extends State<ReportLostItem> {
                                 decoration: textInputDecoration.copyWith(
                                     hintText: "Item Name"),
                               ),
-                              SizedBox(height: 10),
+                              const SizedBox(height: 10),
                               TextFormField(
                                 textInputAction: TextInputAction.next,
                                 keyboardType: TextInputType.number,
@@ -124,14 +124,14 @@ class _ReportLostItemState extends State<ReportLostItem> {
                                     counterText: '',
                                     hintText: "Contact Number"),
                               ),
-                              SizedBox(height: 10),
+                              const SizedBox(height: 10),
                               DropdownButtonFormField<String>(
                                 decoration: textInputDecoration.copyWith(
                                     prefixText: "Bus Number "),
                                 validator: (val) => (val == null || val.isEmpty)
                                     ? 'Select a bus'
                                     : null,
-                                hint: Text(''),
+                                hint: const Text(''),
                                 onChanged: (val) {
                                   setState(() {
                                     _lostItem.busNumber = val!;
@@ -150,17 +150,17 @@ class _ReportLostItemState extends State<ReportLostItem> {
                         Expanded(
                           child: Container(
                             height: 120,
-                            margin: EdgeInsets.only(left: 5),
+                            margin: const EdgeInsets.only(left: 5),
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(12),
                                 color: Colors.white),
-                            child: (_lostItem.image != null)
+                            child: (_lostItem.imagePath != null)
                                 ? Stack(
                                     children: [
                                       ClipRRect(
                                         borderRadius: BorderRadius.circular(12),
                                         child: Image.file(
-                                          _lostItem.image!,
+                                          File(_lostItem.imagePath!),
                                           height: 120,
                                           width: double.infinity,
                                           fit: BoxFit.fill,
@@ -172,10 +172,10 @@ class _ReportLostItemState extends State<ReportLostItem> {
                                         child: IconButton(
                                             onPressed: () {
                                               setState(() {
-                                                _lostItem.image = null;
+                                                _lostItem.imagePath = null;
                                               });
                                             },
-                                            icon: Icon(
+                                            icon: const Icon(
                                               Icons.cancel_outlined,
                                               color: Colors.blue,
                                             )),
@@ -188,7 +188,7 @@ class _ReportLostItemState extends State<ReportLostItem> {
                                           source: ImageSource.gallery);
                                       if (image != null) {
                                         setState(() {
-                                          _lostItem.image = File(image.path);
+                                          _lostItem.imagePath = image.path;
                                         });
                                       }
                                     },
@@ -215,7 +215,7 @@ class _ReportLostItemState extends State<ReportLostItem> {
                         ),
                       ],
                     ),
-                    SizedBox(height: 10),
+                    const SizedBox(height: 10),
                     TextFormField(
                       minLines: 3,
                       maxLines: 7,
@@ -246,8 +246,8 @@ class _ReportLostItemState extends State<ReportLostItem> {
                             }
                           },
                           child: (_isLoading)
-                              ? CircularProgressIndicator()
-                              : Text(
+                              ? const CircularProgressIndicator()
+                              : const Text(
                                   'Submit',
                                   style: TextStyle(
                                       color: Colors.blue, fontSize: 20),
@@ -256,21 +256,25 @@ class _ReportLostItemState extends State<ReportLostItem> {
                               primary: Colors.white,
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(15)),
-                              padding: EdgeInsets.symmetric(
+                              padding: const EdgeInsets.symmetric(
                                   vertical: 15, horizontal: 30)),
                         ),
-                        SizedBox(height: 30),
+                        const SizedBox(height: 20),
                         ElevatedButton(
-                          onPressed: () => Navigator.pop(context),
+                          onPressed: (_isLoading)
+                              ? null
+                              : () => Navigator.pop(context),
                           child: Text(
                             'Cancel',
-                            style: TextStyle(color: Colors.red, fontSize: 20),
+                            style: TextStyle(
+                                color: (_isLoading) ? Colors.grey : Colors.red,
+                                fontSize: 20),
                           ),
                           style: ElevatedButton.styleFrom(
                               primary: Colors.white,
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(15)),
-                              padding: EdgeInsets.symmetric(
+                              padding: const EdgeInsets.symmetric(
                                   vertical: 15, horizontal: 30)),
                         )
                       ],

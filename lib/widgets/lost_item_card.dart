@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:ssnbt/models/LostItem.dart';
-import 'package:ssnbt/services/FirestoreService.dart';
-import 'package:ssnbt/widgets/DeleteItemButton.dart';
-import 'package:ssnbt/widgets/StatusWidget.dart';
+import 'package:ssnbt/models/lost_item.dart';
+import 'package:ssnbt/services/firestore_service.dart';
+import 'package:ssnbt/widgets/delete_item_button.dart';
+import 'package:ssnbt/widgets/status_widget.dart';
 
 class LostItemCard extends StatelessWidget {
   final String itemRequestId;
-  LostItemCard({required this.itemRequestId});
+  const LostItemCard({Key? key, required this.itemRequestId}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,16 +22,17 @@ class LostItemCard extends StatelessWidget {
                 children: [
                   Container(
                     height: 100,
-                    margin: EdgeInsets.symmetric(horizontal: 8, vertical: 12),
+                    margin:
+                        const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(12),
-                      child: (snapshot.data!['image'] == null)
+                      child: (_lostItem.imagePath == null)
                           ? Image.asset(
                               'assets/lostImagePlaceholder.png',
                             )
                           : FadeInImage.assetNetwork(
                               placeholder: 'assets/lostImageLoading.gif',
-                              image: snapshot.data!['image']),
+                              image: _lostItem.imagePath!),
                     ),
                   ),
                   Expanded(
@@ -42,16 +43,16 @@ class LostItemCard extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(_lostItem.name,
-                                style: TextStyle(
+                                style: const TextStyle(
                                     fontSize: 22, fontWeight: FontWeight.bold)),
                             Text(_lostItem.description ?? '',
-                                style: TextStyle(fontSize: 16))
+                                style: const TextStyle(fontSize: 16))
                           ]),
                     ),
                   ),
                   Container(
                     height: 120,
-                    padding: EdgeInsets.fromLTRB(2, 14, 2, 0),
+                    padding: const EdgeInsets.fromLTRB(2, 14, 2, 0),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -61,20 +62,20 @@ class LostItemCard extends StatelessWidget {
                               showDialog(
                                   context: context,
                                   builder: (context) => AlertDialog(
-                                        title: Text('Delete Request'),
+                                        title: const Text('Delete Request'),
                                         content: Text(
                                             "Are you sure you want to delete the lost request for ${_lostItem.name}"),
                                         actions: [
                                           TextButton(
                                               onPressed: () =>
                                                   Navigator.pop(context),
-                                              child: Text('NO')),
+                                              child: const Text('NO')),
                                           DeleteItemButton(
                                               itemRequestId: itemRequestId)
                                         ],
                                       ));
                             },
-                            icon: Icon(
+                            icon: const Icon(
                               Icons.delete,
                               color: Colors.red,
                             ))
@@ -84,7 +85,7 @@ class LostItemCard extends StatelessWidget {
                 ],
               );
             }
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           }),
     );
   }

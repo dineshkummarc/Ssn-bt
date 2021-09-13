@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:ssnbt/services/AuthenticationService.dart';
+import 'package:ssnbt/services/authentication_service.dart';
 
 import 'home.dart';
 
@@ -30,15 +30,14 @@ class _OnBoardingState extends State<OnBoarding> {
             children: [
               Text(
                 'Welcome ${_authInstance.getUserName() ?? 'User'}',
-                style: TextStyle(color: Colors.white, fontSize: 28),
+                style: const TextStyle(color: Colors.white, fontSize: 28),
               ),
               Image.asset(
                 'assets/onBoardingLogo.png',
                 width: double.infinity,
               ),
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+              const Padding(
+                padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
                 child: Text("Are you a ?",
                     style: TextStyle(color: Colors.white, fontSize: 28)),
               ),
@@ -53,7 +52,7 @@ class _OnBoardingState extends State<OnBoarding> {
                           primary: (_isHosteller) ? Colors.white : Colors.blue,
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10)),
-                          padding: EdgeInsets.symmetric(
+                          padding: const EdgeInsets.symmetric(
                               vertical: 60, horizontal: 10),
                         ),
                         onPressed: () async {
@@ -65,7 +64,7 @@ class _OnBoardingState extends State<OnBoarding> {
                           Icon(Icons.directions_bus,
                               color:
                                   (_isHosteller) ? Colors.blue : Colors.white),
-                          SizedBox(height: 5),
+                          const SizedBox(height: 5),
                           Text(
                             'Day-Scholar',
                             style: TextStyle(
@@ -77,13 +76,13 @@ class _OnBoardingState extends State<OnBoarding> {
                         ]),
                       ),
                     ),
-                    SizedBox(width: 10),
+                    const SizedBox(width: 10),
                     Expanded(
                         child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
                               primary:
                                   (_isHosteller) ? Colors.blue : Colors.white,
-                              padding: EdgeInsets.symmetric(
+                              padding: const EdgeInsets.symmetric(
                                   vertical: 60, horizontal: 10),
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(10)),
@@ -99,7 +98,7 @@ class _OnBoardingState extends State<OnBoarding> {
                                 color:
                                     (_isHosteller) ? Colors.white : Colors.blue,
                               ),
-                              SizedBox(height: 5),
+                              const SizedBox(height: 5),
                               Text(
                                 'Hosteller',
                                 style: TextStyle(
@@ -114,20 +113,20 @@ class _OnBoardingState extends State<OnBoarding> {
               ),
               Container(
                 alignment: Alignment.centerRight,
-                margin: EdgeInsets.only(right: 20),
+                margin: const EdgeInsets.only(right: 20),
                 child: ElevatedButton(
                   onPressed: () async {
                     SharedPreferences _prefs =
                         await SharedPreferences.getInstance();
                     _prefs.setBool('firstTime', false);
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => Home()));
+                        MaterialPageRoute(builder: (context) => const Home()));
                   },
                   style: ElevatedButton.styleFrom(
                       primary: Colors.white,
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 40, vertical: 15)),
-                  child: Text(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 40, vertical: 15)),
+                  child: const Text(
                     "Next",
                     style: TextStyle(color: Color(0xFF5274EF)),
                   ),

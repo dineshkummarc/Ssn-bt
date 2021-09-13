@@ -11,8 +11,8 @@ class MapView extends StatefulWidget {
 }
 
 class _MapViewState extends State<MapView> {
-  Completer<GoogleMapController> _controller = Completer();
-  static const LatLng _center = const LatLng(12.75194333944987,
+  final Completer<GoogleMapController> _controller = Completer();
+  static const LatLng _center = LatLng(12.75194333944987,
       80.20331063903828); //co-ordinates of ssn college by default
   void _onMapCreated(GoogleMapController controller) {
     _controller.complete(controller);
@@ -24,7 +24,7 @@ class _MapViewState extends State<MapView> {
       onMapCreated: _onMapCreated,
       myLocationButtonEnabled: false,
       zoomControlsEnabled: false,
-      initialCameraPosition: CameraPosition(
+      initialCameraPosition: const CameraPosition(
         target: _center,
         zoom: 14.5,
       ),
