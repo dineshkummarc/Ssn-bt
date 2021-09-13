@@ -1,72 +1,19 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:ssnbt/services/authentication_service.dart';
 import 'screens/home.dart';
 import 'screens/on_boarding.dart';
 
-class Wrapper extends StatefulWidget {
+class Wrapper extends StatelessWidget {
   const Wrapper({Key? key}) : super(key: key);
-
-  @override
-  _WrapperState createState() => _WrapperState();
-}
-
-class _WrapperState extends State<Wrapper> {
-  final _authInstance = AuthenticationService();
-  Future<bool> getPrefs() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    bool firstTime = prefs.getBool("firstTime") ?? true;
-    return firstTime;
-  }
-
-  Future signInWithGoogle() async {
-    dynamic result = await _authInstance.signInWithGoogle();
-    if (result == null) {
-      showDialog(
-          context: context,
-          barrierDismissible: false,
-          builder: (_) => AlertDialog(
-                title: const Text("Invalid Login"),
-                content: const Text("Please Log in with ssn mail id"),
-                actions: [
-                  TextButton(
-                      child: const Text('Ok'),
-                      onPressed: () {
-                        Navigator.pop(context);
-                        signInWithGoogle();
-                      }),
-                ],
-              ));
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<User?>(context);
     if (user == null) {
-      signInWithGoogle();
-      return const Scaffold(
-        body: Center(
-          child: CircularProgressIndicator(color: Colors.white),
-        ),
-      );
+      return const OnBoarding();
     } else {
-      return FutureBuilder<bool>(
-          future: getPrefs(),
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.done) {
-              if (snapshot.data == true) {
-                return const OnBoarding();
-              } else {
-                return const Home();
-              }
-            }
-            return const CircularProgressIndicator(
-              color: Colors.white,
-            );
-          });
+      return const Home();
     }
   }
 }
