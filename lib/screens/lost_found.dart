@@ -12,6 +12,7 @@ class LostFound extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       floatingActionButton: FloatingActionButton(
+        tooltip: 'Report Lost Item',
         child: const Icon(Icons.add),
         onPressed: () {
           Navigator.push(context,

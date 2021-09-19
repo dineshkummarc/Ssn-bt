@@ -12,7 +12,11 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   int _currentPage = 0;
-  final List<Widget> _pages = [const MapView(), const DetailsPage(), const LostFound()];
+  final List<Widget> _pages = [
+    const MapView(),
+    const DetailsPage(),
+    const LostFound()
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(

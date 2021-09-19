@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:ssnbt/constants.dart';
@@ -64,7 +63,7 @@ class ReportLostItem extends StatefulWidget {
 class _ReportLostItemState extends State<ReportLostItem> {
   final _formKey = GlobalKey<FormState>();
   final ImagePicker _picker = ImagePicker();
-  LostItem _lostItem = LostItem(busNumber: '1');
+  LostItem lostItem = LostItem(busNumber: '1');
   bool _isLoading = false;
   @override
   Widget build(BuildContext context) {
@@ -95,7 +94,7 @@ class _ReportLostItemState extends State<ReportLostItem> {
                               TextFormField(
                                 textInputAction: TextInputAction.next,
                                 onChanged: (val) {
-                                  _lostItem.name = val;
+                                  lostItem.name = val;
                                 },
                                 validator: (val) => val!.isEmpty
                                     ? "Please Enter the item name"
@@ -110,7 +109,7 @@ class _ReportLostItemState extends State<ReportLostItem> {
                                 maxLength: 10,
                                 onChanged: (val) {
                                   setState(() {
-                                    _lostItem.contactNumber =
+                                    lostItem.contactNumber =
                                         int.tryParse(val) ?? 0;
                                   });
                                 },
@@ -118,7 +117,7 @@ class _ReportLostItemState extends State<ReportLostItem> {
                                     ? "Please Enter a valid Contact Number"
                                     : null,
                                 decoration: textInputDecoration.copyWith(
-                                    prefixText: (_lostItem.contactNumber != 0)
+                                    prefixText: (lostItem.contactNumber != 0)
                                         ? "+91 "
                                         : "",
                                     counterText: '',
@@ -134,7 +133,7 @@ class _ReportLostItemState extends State<ReportLostItem> {
                                 hint: const Text(''),
                                 onChanged: (val) {
                                   setState(() {
-                                    _lostItem.busNumber = val!;
+                                    lostItem.busNumber = val!;
                                   });
                                 },
                                 items: busRoutes.map((busNumber) {
@@ -154,13 +153,13 @@ class _ReportLostItemState extends State<ReportLostItem> {
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(12),
                                 color: Colors.white),
-                            child: (_lostItem.imagePath != null)
+                            child: (lostItem.imagePath != null)
                                 ? Stack(
                                     children: [
                                       ClipRRect(
                                         borderRadius: BorderRadius.circular(12),
                                         child: Image.file(
-                                          File(_lostItem.imagePath!),
+                                          File(lostItem.imagePath!),
                                           height: 120,
                                           width: double.infinity,
                                           fit: BoxFit.fill,
@@ -172,7 +171,7 @@ class _ReportLostItemState extends State<ReportLostItem> {
                                         child: IconButton(
                                             onPressed: () {
                                               setState(() {
-                                                _lostItem.imagePath = null;
+                                                lostItem.imagePath = null;
                                               });
                                             },
                                             icon: const Icon(
@@ -188,7 +187,7 @@ class _ReportLostItemState extends State<ReportLostItem> {
                                           source: ImageSource.gallery);
                                       if (image != null) {
                                         setState(() {
-                                          _lostItem.imagePath = image.path;
+                                          lostItem.imagePath = image.path;
                                         });
                                       }
                                     },
@@ -220,7 +219,7 @@ class _ReportLostItemState extends State<ReportLostItem> {
                       minLines: 3,
                       maxLines: 7,
                       onChanged: (val) {
-                        _lostItem.description = val;
+                        lostItem.description = val;
                       },
                       textInputAction: TextInputAction.done,
                       decoration: textInputDecoration.copyWith(
@@ -241,7 +240,7 @@ class _ReportLostItemState extends State<ReportLostItem> {
                               setState(() {
                                 _isLoading = true;
                               });
-                              await FirestoreService().addLostItem(_lostItem);
+                              await FirestoreService().addLostItem(lostItem);
                               Navigator.pop(context);
                             }
                           },
