@@ -20,7 +20,7 @@ class StatusWidget extends StatelessWidget {
                     color: Colors.green,
                   )
                 : const Icon(
-                    Icons.block,
+                    Icons.close,
                     color: Colors.red,
                   ),
       ],

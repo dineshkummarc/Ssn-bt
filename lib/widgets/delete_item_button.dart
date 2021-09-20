@@ -3,7 +3,8 @@ import 'package:ssnbt/services/firestore_service.dart';
 
 class DeleteItemButton extends StatefulWidget {
   final String itemRequestId;
-  DeleteItemButton({required this.itemRequestId});
+  const DeleteItemButton({Key? key, required this.itemRequestId})
+      : super(key: key);
   @override
   _DeleteItemButtonState createState() => _DeleteItemButtonState();
 }
@@ -20,6 +21,8 @@ class _DeleteItemButtonState extends State<DeleteItemButton> {
           await FirestoreService().deleteLostItem(widget.itemRequestId);
           Navigator.pop(context);
         },
-        child: (isLoading) ? CircularProgressIndicator() : Text('YES'));
+        child: (isLoading)
+            ? const CircularProgressIndicator()
+            : const Text('YES'));
   }
 }
