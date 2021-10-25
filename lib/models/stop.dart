@@ -7,6 +7,13 @@ class Stop {
   final double longitude;
 
   Stop(this.stopName, this.time, this.latitude, this.longitude);
+  @override
+  String toString() {
+    String hour = (time.hour < 10) ? '0${time.hour}' : '${time.hour}';
+    String minutes = (time.minute < 10) ? '0${time.minute}' : '${time.minute}';
+
+    return '$hour:$minutes AM  ' + stopName;
+  }
 }
 
 //Route 1
@@ -35,7 +42,7 @@ Stop thirukazhukundram = Stop(
     12.608888692587445,
     80.05640569267044);
 Stop thiruporur =
-Stop("Thiruporur", const TimeOfDay(hour: 7, minute: 30), 12.7304, 80.1890);
+    Stop("Thiruporur", const TimeOfDay(hour: 7, minute: 30), 12.7304, 80.1890);
 
 //Route 3
 
@@ -64,24 +71,24 @@ Stop shellPB = Stop("ShellPB", const TimeOfDay(hour: 6, minute: 20),
 Stop mugalaivakkamBS = Stop(
     "MugalaivakkamBS", const TimeOfDay(hour: 6, minute: 22), 13.0202, 80.1663);
 Stop ramapuramBS =
-Stop("RamapuramBS", const TimeOfDay(hour: 6, minute: 24), 13.1034, 80.0528);
+    Stop("RamapuramBS", const TimeOfDay(hour: 6, minute: 24), 13.1034, 80.0528);
 Stop buttRoad = Stop("ButtRoad", const TimeOfDay(hour: 6, minute: 27),
     13.009939455173042, 80.19669120003199);
 Stop kathipara =
-Stop("Kathipara", const TimeOfDay(hour: 6, minute: 30), 13.0073, 80.2016);
+    Stop("Kathipara", const TimeOfDay(hour: 6, minute: 30), 13.0073, 80.2016);
 
 //Route 5
 
 Stop beachStation5 = Stop("BeachStation", const TimeOfDay(hour: 6, minute: 20),
     13.094507646858167, 80.2922388745996);
 Stop lightHouse5 =
-Stop("LightHouse", const TimeOfDay(hour: 6, minute: 30), 13.0397, 80.2794);
+    Stop("LightHouse", const TimeOfDay(hour: 6, minute: 30), 13.0397, 80.2794);
 Stop santhomeChurch5 = Stop(
     "SanthomeChurch", const TimeOfDay(hour: 6, minute: 35), 13.0336, 80.2778);
 Stop kutcheryRoad = Stop("KutcheryRoad", const TimeOfDay(hour: 6, minute: 38),
     13.034660441515728, 80.2724673555622);
 Stop luzCorner5 =
-Stop("LUZCorner", const TimeOfDay(hour: 6, minute: 40), 130366, 80.2683);
+    Stop("LUZCorner", const TimeOfDay(hour: 6, minute: 40), 130366, 80.2683);
 Stop mylaporeTank5 = Stop(
     "MylaporeTank", const TimeOfDay(hour: 6, minute: 45), 13.0340, 80.2679);
 
@@ -107,7 +114,7 @@ Stop goldenFlatsMangaleriPark = Stop("GoldenFlatsMangaleriPark",
 Stop ambatturEstate7 = Stop("AmbatturEstate",
     const TimeOfDay(hour: 6, minute: 07), 13.089208, 80.161308);
 Stop wavin7 =
-Stop("Wavin", const TimeOfDay(hour: 6, minute: 10), 13.088531, 80.171981);
+    Stop("Wavin", const TimeOfDay(hour: 6, minute: 10), 13.088531, 80.171981);
 
 //Route 8
 
@@ -173,7 +180,7 @@ Stop goldmineHotel = Stop("GoldmineHotel", const TimeOfDay(hour: 6, minute: 17),
 Stop cmbtPark = Stop("CMBTPark", const TimeOfDay(hour: 6, minute: 18),
     13.068878278800584, 80.2059072564035);
 Stop mmda =
-Stop("MMDA", const TimeOfDay(hour: 6, minute: 24), 13.065195, 80.211261);
+    Stop("MMDA", const TimeOfDay(hour: 6, minute: 24), 13.065195, 80.211261);
 Stop tirunagar = Stop(
     "Tirunagar", const TimeOfDay(hour: 6, minute: 26), 13.057578, 80.211360);
 Stop kasiTheatre = Stop(
@@ -194,15 +201,15 @@ Stop pattalamBS = Stop(
 Stop bhuvaneswariTheatre = Stop("BhuvaneswariTheatre",
     const TimeOfDay(hour: 6, minute: 13), 13.091704, 80.258319);
 Stop doveton =
-Stop("Doveton", const TimeOfDay(hour: 6, minute: 16), 13.087211, 80.257457);
+    Stop("Doveton", const TimeOfDay(hour: 6, minute: 16), 13.087211, 80.257457);
 Stop gangadeeswaranKoil = Stop("GangadeeswaranKoil",
     const TimeOfDay(hour: 6, minute: 18), 13.083707, 80.254515);
 Stop dhasprakash = Stop(
     "Dhasprakash", const TimeOfDay(hour: 6, minute: 22), 13.078714, 80.253465);
 Stop egmore =
-Stop("Egmore", const TimeOfDay(hour: 6, minute: 25), 13.077370, 80.261279);
+    Stop("Egmore", const TimeOfDay(hour: 6, minute: 25), 13.077370, 80.261279);
 Stop dms =
-Stop("DMS", const TimeOfDay(hour: 6, minute: 30), 13.046949, 80.248339);
+    Stop("DMS", const TimeOfDay(hour: 6, minute: 30), 13.046949, 80.248339);
 Stop annaArivalayam11 = Stop("AnnaArivalayam",
     const TimeOfDay(hour: 6, minute: 31), 13.042041, 80.248077);
 
@@ -211,17 +218,17 @@ Stop annaArivalayam11 = Stop("AnnaArivalayam",
 Stop villivakkam = Stop(
     "Villivakkam", const TimeOfDay(hour: 6, minute: 05), 13.105436, 80.208025);
 Stop icf =
-Stop("ICF", const TimeOfDay(hour: 6, minute: 10), 13.095104, 80.216130);
+    Stop("ICF", const TimeOfDay(hour: 6, minute: 10), 13.095104, 80.216130);
 Stop iynavaramRlyQtrs = Stop("IynavaramRlyQtrs",
     const TimeOfDay(hour: 6, minute: 12), 13.100498, 80.226127);
 Stop jointOffice = Stop(
     "JointOffice", const TimeOfDay(hour: 6, minute: 15), 13.102135, 80.230352);
 Stop sayani =
-Stop("Sayani", const TimeOfDay(hour: 6, minute: 18), 13.098057, 80.238813);
+    Stop("Sayani", const TimeOfDay(hour: 6, minute: 18), 13.098057, 80.238813);
 Stop secretriateColony = Stop("SecretriateColony",
     const TimeOfDay(hour: 6, minute: 21), 13.089325, 80.243092);
 Stop kellys =
-Stop("Kellys", const TimeOfDay(hour: 6, minute: 22), 13.085626, 80.244360);
+    Stop("Kellys", const TimeOfDay(hour: 6, minute: 22), 13.085626, 80.244360);
 Stop kilpaukGarden = Stop("KilpaukGarden", const TimeOfDay(hour: 6, minute: 25),
     13.083258, 80.232157);
 
@@ -384,9 +391,9 @@ Stop ashokPillar19 = Stop(
 Stop chindadripet = Stop(
     "Chindadripet", const TimeOfDay(hour: 6, minute: 30), 13.074947, 80.271422);
 Stop egmore2 =
-Stop("Egmore", const TimeOfDay(hour: 6, minute: 32), 13.077398, 80.261271);
+    Stop("Egmore", const TimeOfDay(hour: 6, minute: 32), 13.077398, 80.261271);
 Stop pudupet =
-Stop("Pudupet", const TimeOfDay(hour: 6, minute: 35), 13.072398, 80.263243);
+    Stop("Pudupet", const TimeOfDay(hour: 6, minute: 35), 13.072398, 80.263243);
 Stop royapettahClockTower = Stop("RoyapettahClockTower",
     const TimeOfDay(hour: 6, minute: 39), 13.058065, 80.265057);
 Stop royapettahHospital = Stop("RoyapettahHospital",
@@ -394,7 +401,7 @@ Stop royapettahHospital = Stop("RoyapettahHospital",
 Stop policeStation = Stop("PoliceStation", const TimeOfDay(hour: 6, minute: 42),
     13.051932, 80.263962);
 Stop ajantha =
-Stop("Ajantha", const TimeOfDay(hour: 6, minute: 44), 13.047029, 80.266463);
+    Stop("Ajantha", const TimeOfDay(hour: 6, minute: 44), 13.047029, 80.266463);
 Stop valluvarstatue = Stop("Valluvarstatue",
     const TimeOfDay(hour: 6, minute: 47), 13.041234, 80.268257);
 Stop luzCorner20 = Stop(
