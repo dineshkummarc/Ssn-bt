@@ -1,22 +1,23 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:ssnbt/controllers/lost_item_controller.dart';
 import 'package:ssnbt/screens/report_lost_item.dart';
-import 'package:ssnbt/services/firestore_service.dart';
+import 'package:ssnbt/widgets/bottom_navbar.dart';
 import 'package:ssnbt/widgets/lost_item_card.dart';
 
 class LostFound extends StatelessWidget {
-  const LostFound({Key? key}) : super(key: key);
-
+  LostFound({Key? key}) : super(key: key);
+  final _lostItemController = Get.put(LostItemController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
+      bottomNavigationBar: const BottomNavBar(currentIndex: 2),
       floatingActionButton: FloatingActionButton(
         tooltip: 'Report Lost Item',
         child: const Icon(Icons.add),
         onPressed: () {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const ReportLostItem()));
+          Get.to(() => ReportLostItem(), transition: Transition.zoom);
         },
       ),
       body: SafeArea(
@@ -30,40 +31,26 @@ class LostFound extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             Flexible(
-              child: StreamBuilder<DocumentSnapshot?>(
-                  stream: FirestoreService().userDataStream,
-                  builder: (context, snapshot) {
-                    if (snapshot.data?.exists == false) {
-                      return const Center(
-                        child: Text(
-                          'No Requests Raised',
-                          style: TextStyle(color: Colors.grey),
-                        ),
-                      );
-                    } else if (snapshot.hasError) {
-                      return Center(child: Text(snapshot.error.toString()));
-                    }
-                    if (snapshot.connectionState == ConnectionState.active) {
-                      List lostItemRequests =
-                          snapshot.data?.get('lostItemRequests') ?? [];
-                      if (lostItemRequests.isEmpty) {
-                        return const Center(
-                          child: Text(
-                            'No Requests Raised',
-                            style: TextStyle(color: Colors.grey),
-                          ),
-                        );
-                      } else {
-                        return ListView(
-                          children: lostItemRequests
-                              .map((lostItemId) =>
-                                  LostItemCard(itemRequestId: lostItemId))
-                              .toList(),
-                        );
-                      }
-                    }
-                    return const Center(child: CircularProgressIndicator());
-                  }),
+              child: Obx(
+                () {
+                  if (_lostItemController.lostItemsList.isEmpty) {
+                    return const Center(
+                      child: Text(
+                        'No Requests Raised',
+                        style: TextStyle(color: Colors.grey),
+                      ),
+                    );
+                  } else {
+                    return ListView(
+                      children: _lostItemController.lostItemsList.value
+                          .map(
+                            (element) => LostItemCard(lostItem: element),
+                          )
+                          .toList(),
+                    );
+                  }
+                },
+              ),
             ),
           ],
         ),
