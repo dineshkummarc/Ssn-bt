@@ -44,7 +44,7 @@ class AuthWrapper extends StatelessWidget {
         if (_controller.user == null) {
           return SelectMode();
         } else {
-          return const Home();
+          return Home();
         }
       },
     );

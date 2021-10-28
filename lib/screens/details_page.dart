@@ -34,7 +34,7 @@ class DetailsPage extends StatelessWidget {
                 alignment: Alignment.bottomCenter,
                 child: ElevatedButton(
                   onPressed: () {
-                    Get.offAll(() => SelectRoute());
+                    Get.to(() => SelectRoute());
                   },
                   child: const Text(
                     'Change Route',

@@ -2,17 +2,15 @@ import 'stop.dart';
 
 class Route {
   final String routeNumber;
-  final int? driverNumber;
   final int inChargeNumber;
   final List<Stop> stops;
-  Route(this.routeNumber, this.inChargeNumber, this.stops, {this.driverNumber});
+  final String busRegistrationNumber;
+  Route(this.routeNumber, this.inChargeNumber, this.stops,
+      {this.busRegistrationNumber = "TN 01 BE 2343"});
 }
-//college
 
-//Route  1
 Route route1 = Route("1", 9940363254, [ambatturEstate1, wavin1, college]);
 
-//Route 2
 Route route2 = Route("2", 9789138761, [
   chengalpettuOldBS,
   chengalpettuNewBS,
@@ -22,11 +20,9 @@ Route route2 = Route("2", 9789138761, [
   college
 ]);
 
-//Route 3
 Route route3 = Route("3", 9444883970,
     [peravallurBS, venusGandhiStatue, peramburRlySt, jamalia, ottery, college]);
 
-//Route 4
 Route route4 = Route("4", 9444883970, [
   porurKumarSweets,
   shellPB,
@@ -37,7 +33,6 @@ Route route4 = Route("4", 9444883970, [
   college
 ]);
 
-//Route 5
 Route route5 = Route("5", 9789138761, [
   beachStation5,
   lightHouse5,
@@ -48,7 +43,6 @@ Route route5 = Route("5", 9789138761, [
   college
 ]);
 
-//Route 6
 Route route6 = Route("6", 9444883970, [
   beachStation6,
   lightHouse6,
@@ -58,7 +52,6 @@ Route route6 = Route("6", 9444883970, [
   college
 ]);
 
-//Route 7
 Route route7 = Route("7", 9444883970, [
   goldenFlatsBS,
   goldenFlatsMangaleriPark,
@@ -67,7 +60,6 @@ Route route7 = Route("7", 9444883970, [
   college
 ]);
 
-//Route 8
 Route route8 = Route("8", 9791179434, [
   p1PoliceStationPulianthope,
   natarajaTheatre,
@@ -84,7 +76,6 @@ Route route8 = Route("8", 9791179434, [
   college
 ]);
 
-//Route 9
 Route route9 = Route("9", 9382701648, [
   tskNagar,
   collectorNagar,
@@ -94,10 +85,8 @@ Route route9 = Route("9", 9382701648, [
   college
 ]);
 
-//Route 9A
 Route route9A = Route("9A", 9789138761, [thirumangalam, rationKadai, college]);
 
-//Route 10
 Route route10 = Route("10", 8939994848, [
   cpwdQuarters,
   goldmineHotel,
@@ -109,7 +98,6 @@ Route route10 = Route("10", 8939994848, [
   college
 ]);
 
-//Route 11
 Route route11 = Route("11", 9444883970, [
   peramburMarket,
   peramburRS,
@@ -125,7 +113,6 @@ Route route11 = Route("11", 9444883970, [
   college
 ]);
 
-//Route 12
 Route route12 = Route("12", 9940363254, [
   villivakkam,
   icf,
@@ -138,7 +125,6 @@ Route route12 = Route("12", 9940363254, [
   college
 ]);
 
-//Route 13
 Route route13 = Route("13", 9791179434, [
   nathamuni,
   k4PS,
@@ -153,7 +139,6 @@ Route route13 = Route("13", 9791179434, [
   college
 ]);
 
-//Route 14
 Route route14 = Route("14", 9940363254, [
   arumbakkamBS,
   panjaliammanKoil,
@@ -172,7 +157,6 @@ Route route14 = Route("14", 9940363254, [
   college
 ]);
 
-//Route 15
 Route route15 = Route("15", 8939994848, [
   chinmayaNagar,
   natesanNagar,
@@ -185,7 +169,6 @@ Route route15 = Route("15", 8939994848, [
   college
 ]);
 
-//Route 16
 Route route16 = Route("16", 9382701648, [
   pThangalSubway,
   chidambaramStore,
@@ -199,7 +182,6 @@ Route route16 = Route("16", 9382701648, [
   college
 ]);
 
-//Route 17
 Route route17 = Route("17", 9382701648, [
   ramTheatre2,
   liberty17,
@@ -214,11 +196,9 @@ Route route17 = Route("17", 9382701648, [
   college
 ]);
 
-//Route 18
 Route route18 = Route("18", 8939994848,
     [korattur, postOffice, annanagarWDepot, blueStar, nerkundram, college]);
 
-//Route 19
 Route route19 = Route("19", 9444883970, [
   valasaravakkam,
   kesavarthini,
@@ -231,7 +211,6 @@ Route route19 = Route("19", 9444883970, [
   college
 ]);
 
-//Route 20
 Route route20 = Route("20", 9080504181, [
   chindadripet,
   egmore2,
@@ -246,7 +225,6 @@ Route route20 = Route("20", 9080504181, [
   college
 ]);
 
-//Route 21
 Route route21 = Route("21", 9444883970, [
   avichiSchool2,
   sooriyaHospital,
@@ -263,7 +241,6 @@ Route route21 = Route("21", 9444883970, [
   college
 ]);
 
-//Route 22
 Route route22 = Route("22", 9382701648, [
   psbbSchool,
   doubleTank,
@@ -280,7 +257,6 @@ Route route22 = Route("22", 9382701648, [
   college
 ]);
 
-//Route 23
 Route route23 = Route("23", 9876543210, [
   jeyarajTheatre,
   govtBoysschool,
@@ -295,7 +271,6 @@ Route route23 = Route("23", 9876543210, [
   college
 ]);
 
-//Route 24
 Route route24 = Route("24", 9382701648, [
   samiyarMadam,
   libertyMeenakshiCollege,
@@ -310,7 +285,6 @@ Route route24 = Route("24", 9382701648, [
   college
 ]);
 
-//Route 25
 Route route25 = Route("25", 9444883970, [
   chepaukStadium,
   pycroftsRoad,
@@ -327,7 +301,6 @@ Route route25 = Route("25", 9444883970, [
   college
 ]);
 
-//Route 26
 Route route26 = Route("26", 9444883970, [
   rangarajapuramVBank,
   fiveLights,
@@ -340,7 +313,6 @@ Route route26 = Route("26", 9444883970, [
   college
 ]);
 
-//Route 27
 Route route27 = Route("27", 9677012278, [
   bssHospital,
   mrtsBS,
@@ -351,7 +323,6 @@ Route route27 = Route("27", 9677012278, [
   college
 ]);
 
-//Route 28
 Route route28 = Route("28", 9940363254, [
   kalpakkam,
   babaTempleFountainStop,
@@ -363,7 +334,6 @@ Route route28 = Route("28", 9940363254, [
   college
 ]);
 
-//Route 29
 Route route29 = Route("29", 9789138761, [
   anagaputhurBS,
   ammanKoil29,
@@ -378,7 +348,6 @@ Route route29 = Route("29", 9789138761, [
   college
 ]);
 
-//Route 30
 Route route30 = Route("30", 9677012278, [
   churchParkConvent,
   stellamaris,
@@ -390,7 +359,6 @@ Route route30 = Route("30", 9677012278, [
   college
 ]);
 
-//Route 30A
 Route route30A = Route("30A", 9677012278, [
   ega,
   chetputSignal30A,
@@ -404,7 +372,6 @@ Route route30A = Route("30A", 9677012278, [
   college
 ]);
 
-//Route 31
 Route route31 = Route("31", 9444883970, [
   idPark,
   saravanaSquare,
@@ -416,7 +383,6 @@ Route route31 = Route("31", 9444883970, [
   college
 ]);
 
-//Route 32
 Route route32 = Route("32", 9444883970, [
   hastinapuramBS,
   ammanKoil32,
@@ -429,7 +395,6 @@ Route route32 = Route("32", 9444883970, [
   college
 ]);
 
-//Route 33
 Route route33 = Route("33", 9382701648, [
   stThomasMountJeyalakshmiTheatre,
   surenderNagar,
@@ -445,7 +410,6 @@ Route route33 = Route("33", 9382701648, [
   college
 ]);
 
-//Route 34
 Route route34 = Route("34", 9080504181, [
   adambakkamPKoil,
   vandikaranSt,
@@ -455,7 +419,6 @@ Route route34 = Route("34", 9080504181, [
   college
 ]);
 
-//Route 35
 Route route35 = Route("35", 9677012278, [
   aavinoppMalarH,
   avvaiHome,
@@ -469,11 +432,9 @@ Route route35 = Route("35", 9677012278, [
   college
 ]);
 
-//Route 36
 Route route36 = Route("36", 9677012278,
     [chromepet, hindumissionHospital, erimbuliyur, perungalathur36, college]);
 
-//Route 37
 Route route37 = Route("37", 9791179434, [
   ambikkaAppalam,
   indiraNagarPk,
@@ -487,7 +448,6 @@ Route route37 = Route("37", 9791179434, [
   college
 ]);
 
-//Route 38
 Route route38 = Route("38", 9677261980, [
   jayanthiTheatre,
   kandanchavadi,
@@ -506,7 +466,6 @@ Route route38 = Route("38", 9677261980, [
   college
 ]);
 
-//Route 39
 Route route39 = Route("39", 9382701648, [
   guindyRS,
   gurunanakCollege,
@@ -519,7 +478,6 @@ Route route39 = Route("39", 9382701648, [
   college
 ]);
 
-//Route 40
 Route route40 = Route("40", 9677012278, [
   nesapakkamGoldenJublieBlock,
   velachery100RoadSangeethaHotel,
@@ -532,7 +490,6 @@ Route route40 = Route("40", 9677012278, [
   college
 ]);
 
-//Route 41
 Route route41 = Route("41", 9791179434, [
   eastTambaramUCOBank,
   aadhiNagarBS,
@@ -546,7 +503,6 @@ Route route41 = Route("41", 9791179434, [
   college
 ]);
 
-//Route 42
 Route route42 = Route("42", 9080504181, [
   devarajNagarBharathEngg,
   indiraNagar,
@@ -561,7 +517,6 @@ Route route42 = Route("42", 9080504181, [
   college
 ]);
 
-//Route 43
 Route route43 = Route("43", 9789138761, [
   singaperumalKoil,
   maraimalaiNagarBS,

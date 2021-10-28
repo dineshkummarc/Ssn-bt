@@ -28,7 +28,7 @@ class StopCard extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          SizedBox(width: 12),
+          const SizedBox(width: 12),
           Text(
             "$hourText:$minutesText AM",
             style: TextStyle(
@@ -36,7 +36,7 @@ class StopCard extends StatelessWidget {
               color: (isSelected) ? Colors.white : Colors.black,
             ),
           ),
-          Spacer(),
+          const Spacer(),
           Text(
             stop.stopName,
             style: TextStyle(
@@ -45,7 +45,7 @@ class StopCard extends StatelessWidget {
               color: (isSelected) ? Colors.white : Colors.black,
             ),
           ),
-          Spacer(),
+          const Spacer(),
         ],
       ),
     );

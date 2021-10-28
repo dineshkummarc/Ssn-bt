@@ -10,6 +10,7 @@ class SelectRoute extends StatelessWidget {
   final StorageController _storageController = Get.find();
   @override
   Widget build(BuildContext context) {
+    _storageController.setStopIndex(0);
     return Scaffold(
       backgroundColor: Colors.blue,
       appBar: AppBar(

@@ -17,7 +17,7 @@ class BottomNavBar extends StatelessWidget {
       onTap: (index) {
         if (index == currentIndex) return;
         if (index == 0) {
-          Get.off(() => const Home(), transition: Transition.fadeIn);
+          Get.off(() => Home(), transition: Transition.fadeIn);
         } else if (index == 1) {
           Get.off(() => DetailsPage(), transition: Transition.fadeIn);
         } else if (index == 2) {
