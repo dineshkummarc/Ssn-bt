@@ -7,7 +7,7 @@ import 'package:ssnbt/widgets/details_card.dart';
 
 class DetailsPage extends StatelessWidget {
   DetailsPage({Key? key}) : super(key: key);
-  final _locationController = Get.put(LocationController());
+  final LocationController _locationController = Get.find();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,6 +34,7 @@ class DetailsPage extends StatelessWidget {
                 alignment: Alignment.bottomCenter,
                 child: ElevatedButton(
                   onPressed: () {
+                    _locationController.dispose();
                     Get.offAll(() => SelectRoute());
                   },
                   child: const Text(

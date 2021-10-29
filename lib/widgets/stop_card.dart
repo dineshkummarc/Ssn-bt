@@ -9,11 +9,6 @@ class StopCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String hourText =
-        (stop.time.hour < 10) ? '0${stop.time.hour}' : '${stop.time.hour}';
-    String minutesText = (stop.time.minute < 10)
-        ? '0${stop.time.minute}'
-        : '${stop.time.minute}';
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 16),
       margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
@@ -28,15 +23,15 @@ class StopCard extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          SizedBox(width: 12),
+          const SizedBox(width: 12),
           Text(
-            "$hourText:$minutesText AM",
+            stop.getTimeString(),
             style: TextStyle(
               fontSize: 18,
               color: (isSelected) ? Colors.white : Colors.black,
             ),
           ),
-          Spacer(),
+          const Spacer(),
           Text(
             stop.stopName,
             style: TextStyle(
@@ -45,7 +40,7 @@ class StopCard extends StatelessWidget {
               color: (isSelected) ? Colors.white : Colors.black,
             ),
           ),
-          Spacer(),
+          const Spacer(),
         ],
       ),
     );

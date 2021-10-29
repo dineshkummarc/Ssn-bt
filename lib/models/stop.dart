@@ -7,12 +7,12 @@ class Stop {
   final double longitude;
 
   Stop(this.stopName, this.time, this.latitude, this.longitude);
-  @override
-  String toString() {
+
+  String getTimeString() {
     String hour = (time.hour < 10) ? '0${time.hour}' : '${time.hour}';
     String minutes = (time.minute < 10) ? '0${time.minute}' : '${time.minute}';
 
-    return '$hour:$minutes AM  ' + stopName;
+    return '$hour:$minutes Am';
   }
 }
 
@@ -973,9 +973,9 @@ Stop kalyanamandapam = Stop(
 
 //Route 40
 
-Stop nesapakkamGoldenJublieBlock = Stop("NesapakkamGoldenJublieBlock)",
+Stop nesapakkamGoldenJublieBlock = Stop("NesapakkamGoldenJublieBlock",
     const TimeOfDay(hour: 6, minute: 20), 13.038689538265494, 80.195288507936);
-Stop velachery100RoadSangeethaHotel = Stop("Velachery100RoadSangeethaHotel)",
+Stop velachery100RoadSangeethaHotel = Stop("Velachery100RoadSangeethaHotel",
     const TimeOfDay(hour: 6, minute: 42), 12.989359771814128, 80.218267515344);
 Stop erikarai = Stop("Erikarai", const TimeOfDay(hour: 6, minute: 43),
     12.89679770386248, 80.11078058417596);
