@@ -44,6 +44,7 @@ class LostItemController extends GetxController {
       await ref.putFile(File(imagePath.value!));
       String downloadUrl = await ref.getDownloadURL();
       await _itemReference.update({'image': downloadUrl});
+      imagePath.value = null;
     }
     DocumentSnapshot _documentSnapshot =
         await _instance.collection("users").doc(userId).get();
