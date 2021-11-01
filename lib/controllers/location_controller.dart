@@ -17,6 +17,7 @@ class LocationController extends GetxController {
   var circles = <Circle>{}.obs;
   var polylines = <Polyline>{}.obs;
   var currentStatus = 0.obs;
+  var stopsReached = 0.obs;
   var totalDistance = 0.0.obs;
   var minutes = 0.obs;
   int driverNumber = 0;
@@ -126,6 +127,7 @@ class LocationController extends GetxController {
       longitude = event.get('longitude');
       currentStatus.value = event.get('currentStatus');
       driverNumber = event.get('driverNumber');
+      stopsReached.value = event.get('stopsReached');
       if (currentStatus.value != 1) {
         polylines.clear();
         circles.clear();

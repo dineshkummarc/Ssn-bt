@@ -6,6 +6,7 @@ import 'package:ssnbt/controllers/location_controller.dart';
 import 'package:ssnbt/screens/lost_found.dart';
 import 'package:ssnbt/screens/select_route.dart';
 import 'package:ssnbt/widgets/details_card.dart';
+import 'package:ssnbt/widgets/route_stops_card.dart';
 
 class Home extends StatelessWidget {
   Home({Key? key}) : super(key: key);
@@ -83,10 +84,7 @@ class Home extends StatelessWidget {
                       DetailsCard(),
                       const SizedBox(height: 20),
                       if (_locationController.currentStatus.value == 1)
-                        Container(
-                          color: Colors.red,
-                        ),
-                      //stops view
+                        RouteStopsCard(),
                       const Text("Want to Track a Different Route?"),
                       Container(
                         width: double.infinity,

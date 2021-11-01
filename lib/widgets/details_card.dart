@@ -20,7 +20,7 @@ class DetailsCard extends StatelessWidget {
       ),
       child: Container(
         height: size.height * 0.25,
-        width: double.infinity,
+        width: size.width,
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
         child: Obx(() {
           return Column(
