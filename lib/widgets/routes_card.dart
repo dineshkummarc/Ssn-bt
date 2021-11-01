@@ -2,70 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ssnbt/models/stop.dart';
 
-Widget _buildStopRow(String stopTime, String stopName, bool buildSeparator) {
-  return Row(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      const SizedBox(width: 4),
-      Text(
-        stopTime,
-        style: const TextStyle(
-          color: Color(0xFF5B7B92),
-          fontSize: 16,
-        ),
-      ),
-      const SizedBox(width: 12),
-      if (buildSeparator)
-        Column(
-          children: [
-            Container(
-              height: 20,
-              width: 20,
-              decoration: BoxDecoration(
-                border: Border.all(color: Colors.green, width: 4),
-                shape: BoxShape.circle,
-              ),
-            ),
-            for (int i = 0; i < 3; i++)
-              Container(
-                height: 5,
-                width: 2,
-                margin: const EdgeInsets.symmetric(vertical: 1),
-                color: Colors.grey,
-              ),
-          ],
-        )
-      else
-        Container(
-          height: 20,
-          width: 20,
-          decoration: BoxDecoration(
-            border: Border.all(color: Colors.green, width: 4),
-            shape: BoxShape.circle,
-          ),
-          child: Container(
-            margin: const EdgeInsets.all(2),
-            decoration: const BoxDecoration(
-              color: Colors.green,
-              shape: BoxShape.circle,
-            ),
-          ),
-        ),
-      const SizedBox(width: 8),
-      Flexible(
-        child: Text(
-          stopName,
-          overflow: TextOverflow.ellipsis,
-          style: const TextStyle(
-            color: Color(0xFF5B7B92),
-            fontSize: 16,
-          ),
-        ),
-      ),
-    ],
-  );
-}
-
 class RouteCard extends StatelessWidget {
   final String routeNumber;
   final String licenseNumber;
@@ -78,6 +14,73 @@ class RouteCard extends StatelessWidget {
       required this.stops,
       required this.isSelected})
       : super(key: key);
+  Widget _buildStopRow(String stopTime, String stopName, bool buildSeparator) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const SizedBox(width: 4),
+        Text(
+          stopTime,
+          style: const TextStyle(
+            color: Color(0xFF5B7B92),
+            fontSize: 16,
+            fontFamily: "Roboto",
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+        const SizedBox(width: 12),
+        if (buildSeparator)
+          Column(
+            children: [
+              Container(
+                height: 20,
+                width: 20,
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.green, width: 4),
+                  shape: BoxShape.circle,
+                ),
+              ),
+              for (int i = 0; i < 3; i++)
+                Container(
+                  height: 5,
+                  width: 2,
+                  margin: const EdgeInsets.symmetric(vertical: 1),
+                  color: Colors.grey,
+                ),
+            ],
+          )
+        else
+          Container(
+            height: 20,
+            width: 20,
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.green, width: 4),
+              shape: BoxShape.circle,
+            ),
+            child: Container(
+              margin: const EdgeInsets.all(2),
+              decoration: const BoxDecoration(
+                color: Colors.green,
+                shape: BoxShape.circle,
+              ),
+            ),
+          ),
+        const SizedBox(width: 8),
+        Flexible(
+          child: Text(
+            stopName,
+            overflow: TextOverflow.ellipsis,
+            style: const TextStyle(
+              color: Color(0xFF5B7B92),
+              fontSize: 16,
+              fontFamily: "Roboto",
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -116,12 +119,16 @@ class RouteCard extends StatelessWidget {
                   Text(
                     "Route $routeNumber",
                     style: const TextStyle(
-                        fontSize: 24, fontWeight: FontWeight.w600),
+                      fontSize: 24,
+                      fontFamily: "Roboto",
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
                   const Text(
                     "Stops",
                     style: TextStyle(
                       color: Color(0xFF5B7B92),
+                      fontFamily: "Roboto",
                       fontSize: 16,
                     ),
                   ),

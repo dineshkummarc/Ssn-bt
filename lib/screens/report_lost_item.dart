@@ -16,6 +16,7 @@ class ReportLostItem extends StatelessWidget {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Scaffold(
+      backgroundColor: const Color(0xFFA29DFF),
       body: SafeArea(
         minimum: const EdgeInsets.symmetric(horizontal: 20),
         child: SingleChildScrollView(
@@ -24,7 +25,7 @@ class ReportLostItem extends StatelessWidget {
             children: [
               const Text(
                 "Report Lost Item",
-                style: TextStyle(color: Colors.white, fontSize: 32),
+                style: TextStyle(color: Colors.white, fontSize: 24),
               ),
               Obx(() {
                 return Center(

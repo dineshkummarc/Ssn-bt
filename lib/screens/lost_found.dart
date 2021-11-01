@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ssnbt/controllers/lost_item_controller.dart';
 import 'package:ssnbt/screens/report_lost_item.dart';
-import 'package:ssnbt/widgets/bottom_navbar.dart';
 import 'package:ssnbt/widgets/lost_item_card.dart';
 
 class LostFound extends StatelessWidget {
@@ -12,9 +11,9 @@ class LostFound extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      bottomNavigationBar: const BottomNavBar(currentIndex: 2),
       floatingActionButton: FloatingActionButton(
         tooltip: 'Report Lost Item',
+        backgroundColor: Colors.amber,
         child: const Icon(Icons.add),
         onPressed: () {
           Get.to(() => ReportLostItem(), transition: Transition.zoom);
@@ -25,9 +24,20 @@ class LostFound extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              "Requests Raised",
-              style: TextStyle(fontSize: 32),
+            Row(
+              children: [
+                IconButton(
+                  onPressed: () {
+                    Get.back();
+                  },
+                  iconSize: 24,
+                  icon: const Icon(Icons.arrow_back_ios_rounded),
+                ),
+                const Text(
+                  "Requests Raised",
+                  style: TextStyle(fontSize: 24),
+                ),
+              ],
             ),
             const SizedBox(height: 20),
             Flexible(

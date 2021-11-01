@@ -42,12 +42,10 @@ class LocationController extends GetxController {
     longitude = stopLongitude;
   }
 
-  @override
-  void dispose() {
+  void stopListening() {
     if (_locationSubscription != null) {
       _locationSubscription!.cancel();
     }
-    super.dispose();
   }
 
   void loadCustomMarkers() async {

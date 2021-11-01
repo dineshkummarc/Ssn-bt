@@ -13,13 +13,15 @@ class SelectStop extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blue,
+      backgroundColor: const Color(0xFFBE8CFF),
       appBar: AppBar(
-        title: const Text('Select your Stop'),
+        title: const Text("Select Your Stop"),
         centerTitle: true,
+        backgroundColor: Colors.transparent,
         elevation: 0,
       ),
       floatingActionButton: FloatingActionButton(
+        backgroundColor: const Color(0xFFA29DFF),
         onPressed: () {
           if (_authController.user != null) {
             Get.offAll(() => AuthWrapper());

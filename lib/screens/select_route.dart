@@ -10,7 +10,6 @@ class SelectRoute extends StatelessWidget {
   final StorageController _storageController = Get.find();
   @override
   Widget build(BuildContext context) {
-    _storageController.setStopIndex(0);
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -42,6 +41,7 @@ class SelectRoute extends StatelessWidget {
             return GestureDetector(
               onTap: () {
                 _storageController.setRouteIndex(index);
+                _storageController.setStopIndex(0);
               },
               child: RouteCard(
                 routeNumber: route.routeNumber,

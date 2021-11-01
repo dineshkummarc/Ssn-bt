@@ -12,115 +12,128 @@ class DetailsCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(10),
+    var size = MediaQuery.of(context).size;
+    return Card(
+      elevation: 8,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(12),
       ),
-      child: Obx(() {
-        return Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: [
-                    const Icon(Icons.directions_bus),
-                    Text(
-                      ' - ${routesList[_storageController.routeIndex.value].routeNumber}',
-                      style: const TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
+      child: Container(
+        height: size.height * 0.25,
+        width: double.infinity,
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+        child: Obx(() {
+          return Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          const Icon(Icons.directions_bus, color: Colors.amber),
+                          const SizedBox(width: 5),
+                          Text(
+                            routesList[_storageController.routeIndex.value]
+                                .routeNumber,
+                            style: const TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          )
+                        ],
                       ),
-                    )
-                  ],
-                ),
-                const Text(
-                  'Current Status',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
+                      Text(
+                        routesList[_storageController.routeIndex.value]
+                            .busRegistrationNumber,
+                        style: const TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ],
                   ),
-                ),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
+                  Column(
+                    children: [
+                      const Text(
+                        'Current Status',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      Text(
+                        (_locationController.currentStatus.value == 0)
+                            ? 'Idle'
+                            : (_locationController.currentStatus.value == 1)
+                                ? 'RUNNING'
+                                : 'Breakdown',
+                        style: TextStyle(
+                          color: (_locationController.currentStatus.value == 0)
+                              ? Colors.grey
+                              : (_locationController.currentStatus.value == 1)
+                                  ? Colors.green
+                                  : Colors.red,
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              if (_locationController.currentStatus.value == 1)
                 Text(
-                  routesList[_storageController.routeIndex.value]
-                      .busRegistrationNumber,
+                  (_locationController.totalDistance < 0)
+                      ? 'Distance Remaining - ${_locationController.totalDistance.value.toStringAsFixed(3)} m'
+                      : 'Distance Remaining - ${_locationController.totalDistance.value.toStringAsFixed(2)} km',
                   style: const TextStyle(
                     fontSize: 18,
-                    fontWeight: FontWeight.bold,
+                    fontWeight: FontWeight.w500,
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(right: 16),
-                  child: Text(
-                    (_locationController.currentStatus.value == 0)
-                        ? 'Idle'
-                        : (_locationController.currentStatus.value == 1)
-                            ? 'RUNNING'
-                            : 'Breakdown',
-                    style: TextStyle(
-                      color: (_locationController.currentStatus.value == 0)
-                          ? Colors.grey
-                          : (_locationController.currentStatus.value == 1)
-                              ? Colors.green
-                              : Colors.red,
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
+              if (_locationController.currentStatus.value == 1)
+                Text(
+                  'Expected Arrival  - ${_locationController.minutes.value} minutes',
+                  style: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  TextButton.icon(
+                    onPressed: () {
+                      launch("tel:${_locationController.driverNumber}");
+                    },
+                    icon: const Icon(Icons.call),
+                    label: const Text('Call Driver'),
+                    style: TextButton.styleFrom(
+                      primary: const Color(0xFF5274EF),
                     ),
                   ),
-                )
-              ],
-            ),
-            if (_locationController.currentStatus.value == 1)
-              Text(
-                (_locationController.totalDistance < 0)
-                    ? 'Distance Remaining - ${_locationController.totalDistance.value.toStringAsFixed(3)} m'
-                    : 'Distance Remaining - ${_locationController.totalDistance.value.toStringAsFixed(2)} km',
-                style: const TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                ),
+                  TextButton.icon(
+                    onPressed: () {
+                      launch(
+                          "tel:${routesList[_storageController.routeIndex.value].inChargeNumber}");
+                    },
+                    icon: const Icon(Icons.call),
+                    label: const Text('Call Supervisor'),
+                    style: TextButton.styleFrom(
+                      primary: const Color(0xFF5274EF),
+                    ),
+                  ),
+                ],
               ),
-            if (_locationController.currentStatus.value == 1)
-              Text(
-                'Expected Arrival  - ${_locationController.minutes.value} minutes',
-                style: const TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            TextButton.icon(
-              onPressed: () {
-                launch("tel:${_locationController.driverNumber}");
-              },
-              icon: const Icon(Icons.call),
-              label: const Text('Call Driver'),
-              style: TextButton.styleFrom(
-                primary: const Color(0xFF5274EF),
-              ),
-            ),
-            TextButton.icon(
-              onPressed: () {
-                launch(
-                    "tel:${routesList[_storageController.routeIndex.value].inChargeNumber}");
-              },
-              icon: const Icon(Icons.call),
-              label: const Text('Call Supervisor'),
-              style: TextButton.styleFrom(
-                primary: const Color(0xFF5274EF),
-              ),
-            ),
-          ],
-        );
-      }),
+            ],
+          );
+        }),
+      ),
     );
   }
 }
