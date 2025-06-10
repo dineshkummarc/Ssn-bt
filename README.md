@@ -2,7 +2,7 @@
 
 A cross-platform mobile application built using Flutter that enables students and faculty members of SSN College of Engineering to **track college buses in real-time**, receive **breakdown alerts**, and manage **lost & found** requests.
 
----
+> Companion application to the [SSN Bus Tracking – Driver App](https://github.com/adeeteya/Ssnbt_Driver).
 
 ## 📲 Features
 
@@ -21,8 +21,6 @@ A cross-platform mobile application built using Flutter that enables students an
 ### 📞 Emergency Contact
 - Directly call your **assigned driver** or **route supervisor** from the app in one tap.
 
----
-
 ## 🛠️ Tech Stack
 
 | Layer               | Technology                             |
@@ -35,15 +33,11 @@ A cross-platform mobile application built using Flutter that enables students an
 | Design & Prototyping | Figma                                 |
 | IDE                | Android Studio                          |
 
----
-
 ## 🔐 Access Control
 
 - 🔒 Only SSN email addresses can log in.
 - 🧭 Location access is required to enable tracking features.
 - 🛡️ All data is securely stored and managed via Firebase Cloud Firestore.
-
----
 
 ## 🧪 Testing Highlights
 
@@ -51,8 +45,6 @@ A cross-platform mobile application built using Flutter that enables students an
 - ✅ GPS & network checks to ensure location accuracy.
 - ✅ Error handling for invalid inputs (e.g., phone number validation).
 - ✅ Status updates: `IDLE`, `RUNNING`, `BREAKDOWN` reflected in real-time.
-
----
 
 ## 📸 Screenshots
 
